@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{{ title || 'DoodleIn' }}</title>
+	<link rel="icon" href="resources/images/Icon.svg" type="image/svg+xml">
+	<link rel="icon" sizes="192x192" href="resources/images/Icon.png" type="image/png">
+
+	{{-- Vite assets --}}
+	@vite(['resources/css/main.css', 'resources/js/main.js'])
+
+	{{-- Allow pages to inject meta tags --}}
+	@if ($slots.meta)
+	{{{ await $slots.meta() }}}
+	@endif
+</head>
+
+<body>
+	@include('partials/header')
+
+	{{-- Main slot for page content --}}
+	@if ($slots.main)
+	{{{ await $slots.main() }}}
+	@else
+	<!-- Default content when no main slot provided -->
+	<div class="p-8">No content provided for this layout.</div>
+	@endif
+
+	@include('partials/footer')
+
+</body>
+
+</html>
