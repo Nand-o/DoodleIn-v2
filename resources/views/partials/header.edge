@@ -1,3 +1,18 @@
+@if(title == 'Order | DoodleIn')
+<header>
+    <img src="resources/images/Logo.svg" alt="DoodleIn Logo" class="logo">
+
+    <nav class="main-nav">
+        <ul class="nav-links">
+            <li><a href="/" class="nav-link">Close</a></li>
+            <div class="close-button"><img src="resources/images/close.svg" alt="Close icon"></div>
+        </ul>
+
+    </nav>
+
+    <a href="/orders" class="order-button">Order Now</a>
+</header>
+@else
 <header>
     <img src="resources/images/Logo.svg" alt="DoodleIn Logo" class="logo">
 
@@ -11,3 +26,4 @@
 
     <a href="/orders" class="order-button">Order Now</a>
 </header>
+@endif
