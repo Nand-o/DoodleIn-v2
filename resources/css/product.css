@@ -32,10 +32,6 @@ body::before {
     z-index: -1
 }
 
-.nav-link {
-    margin-left: 8px;
-}
-
 main {
     height: 260vh;
 }
