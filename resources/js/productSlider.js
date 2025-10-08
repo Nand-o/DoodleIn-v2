@@ -1,6 +1,6 @@
 // js/productSlider.js
 
-window.addEventListener('load', () => {
+function initSliders() {
     const sliders = document.querySelectorAll('.slider-container');
 
     sliders.forEach(slider => {
@@ -15,11 +15,11 @@ window.addEventListener('load', () => {
         }
 
         const cardWidth = cards[0].offsetWidth;
-        const gap = parseFloat(getComputedStyle(track).gap);
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
         const step = cardWidth + gap;
         let currentIndex = 0;
 
-        const isServiceSlider = slider.id === 'service-slider';
+        const isServiceSlider = slider.id === 'service-slider' || slider.id === 'service';
         if (isServiceSlider) {
             const maxScroll = track.scrollWidth - wrapper.clientWidth;
             track.style.transform = `translateX(-${maxScroll}px)`;
@@ -58,4 +58,14 @@ window.addEventListener('load', () => {
 
         updateButtons();
     });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initSliders();
+});
+
+// Re-init sliders after products are rendered dynamically
+document.addEventListener('products:rendered', () => {
+    // Slight delay to allow DOM images/layout to settle
+    setTimeout(() => initSliders(), 50);
 });

@@ -1,6 +1,6 @@
 @layout.app({ title: 'Products & Services | DoodleIn', headerType: 'normal' })
 @slot('meta')
-@vite(['resources/css/product.css', 'resources/js/productSlider.js'])
+@vite(['resources/css/product.css',  'resources/js/products.js', 'resources/js/productSlider.js'])
 @endslot
 
 @slot('main')
@@ -26,122 +26,9 @@
 
             <div class="slider-wrapper">
                 <div class="slider-track">
-                    <div class="slider-card">
-                        <img src="resources/images/products/coverbook.png" alt="Product 1">
-                        <div class="product-desc">
-                            <h2>Doodle Art Cover Book</h2>
-                            <p>This is a book cover with a doodle art
-                                theme design. It has an attractive
-                                appearance and smooth texture because it
-                                uses high-quality materials.</p>
-                            <h2>$20</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
-
-                    <div class="slider-card">
-                        <img src="resources/images/products/casephone.png" alt="Product 2">
-                        <div class="product-desc">
-                            <h2>Doodle Phone case</h2>
-                            <p>A phone case that speaks your vibe.
-                                Covered in bold doodle art, it protects
-                                your device while showing off your
-                                playful side.</p>
-                            <h2>$5</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
-
-                    <div class="slider-card">
-                        <img src="resources/images/products/mug.png" alt="Product 3">
-                        <div class="product-desc">
-                            <h2>Doodle Mug glass</h2>
-                            <p>A glass mug that blends function with
-                                flair. Covered in lively doodle art, it
-                                turns every sip into a spark of
-                                creativity.</p>
-                            <h2>$11.5</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
-
-                    <div class="slider-card">
-                        <img src="resources/images/products/shoes.png" alt="Product 4">
-                        <div class="product-desc">
-                            <h2>Doodle Shoes</h2>
-                            <p>Step into your story. These shoes are
-                                wrapped in bold doodle art that turns
-                                every stride into a statement of
-                                creativity.</p>
-                            <h2>$62</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
-
-                    <div class="slider-card">
-                        <img src="resources/images/products/T-shirt.png" alt="Product 5">
-                        <div class="product-desc">
-                            <h2>Doodle T-Shirt</h2>
-                            <p>Wear your imagination. This T-shirt
-                                features bold doodle art that turns
-                                everyday style into a playful
-                                statement.</p>
-                            <h2>$12</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
-
-                    <div class="slider-card">
-                        <img src="resources/images/products/totebag.png" alt="Product 6">
-                        <div class="product-desc">
-                            <h2>Doodle Tote Bag</h2>
-                            <p>Carry your creativity. This tote bag
-                                features bold doodle art that turns
-                                everyday errands into a playful
-                                expression of style.</p>
-                            <h2>$18</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
-
-                    <div class="slider-card">
-                        <img src="resources/images/products/stickers.png" alt="Product 7">
-                        <div class="product-desc">
-                            <h2>Doodle Stickers</h2>
-                            <p>Stick your style anywhere. These doodle
-                                stickers bring playful energy to
-                                laptops, journals, bottles, and
-                                beyond.</p>
-                            <h2>$5-10</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
-
-                    <div class="slider-card">
-                        <img src="resources/images/products/casephone-b.png" alt="Product 8">
-                        <div class="product-desc">
-                            <h2>Doodle Phone Case Whale Limited
-                                Edition</h2>
-                            <p>Make waves with every call. This limited
-                                edition phone case features a whimsical
-                                whale in bold doodle art playful,
-                                protective, and impossible to
-                                ignore.</p>
-                            <h2>$99</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
+                    <!-- Slider cards will be injected here by resources/js/products.js -->
                 </div>
             </div>
-        </div>
     </section>
 
     <section id="service" class="showcase-section">
@@ -150,89 +37,7 @@
         <div id="service-slider" class="slider-container">
             <div class="slider-wrapper service">
                 <div class="slider-track">
-                    <div class="slider-card">
-                        <img src="resources/images/products/decor.png" alt="Service 6">
-                        <div class="service-desc">
-                            <h2>Doodle Decoration</h2>
-                            <p>Decorate with personality. These
-                                doodle-inspired pieces add playful charm
-                                and artistic flair to any space perfect
-                                for desks, shelves, or cozy corners.</p>
-                            <h2>$8-25</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
-
-                    <div class="slider-card">
-                        <img src="resources/images/products/poster.png" alt="Service 5">
-                        <div class="service-desc">
-                            <h2>Doodle Poster Design</h2>
-                            <p>Frame your imagination. This doodle
-                                poster turns blank walls into bold
-                                statements playful, expressive, and made
-                                to inspire.</p>
-                            <h2>$12-20</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
-
-                    <div class="slider-card">
-                        <img src="resources/images/products/wall-painting-large.png" alt="Service 4">
-                        <div class="service-desc">
-                            <h2>Doodle Wall Painting Large Size</h2>
-                            <p>Turn your wall into a canvas of
-                                imagination. This large doodle painting
-                                transforms any room into a gallery of
-                                expressive, energetic art.</p>
-                            <h2>$50-60</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
-
-                    <div class="slider-card">
-                        <img src="resources/images/products/wall-painting.png" alt="Service 3">
-                        <div class="service-desc">
-                            <h2>Doodle Wall Painting Medium Size</h2>
-                            <p>Balance boldness and charm. The medium
-                                doodle wall painting makes a statement
-                                without overwhelming your space perfect
-                                for bedrooms or studios.</p>
-                            <h2>$35-40</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
-
-                    <div class="slider-card">
-                        <img src="resources/images/products/wall-painting-small.png" alt="Service 2">
-                        <div class="service-desc">
-                            <h2>Doodle Wall Painting Small Size</h2>
-                            <p>Add a spark of creativity to your corner.
-                                This small doodle wall painting brings
-                                playful detail to tight spaces and cozy
-                                nooks.</p>
-                            <h2>$25-30</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
-
-                    <div class="slider-card">
-                        <img src="resources/images/products/custom.png" alt="Service 1">
-                        <div class="service-desc">
-                            <h2>Custom Product Doodle Art</h2>
-                            <p>Your ideas, our lines. This custom doodle
-                                art service transforms your vision into
-                                one-of-a-kind designs on shoes, jackets,
-                                notebooks, or anything you love.</p>
-                            <h2>$20-50</h2>
-                        </div>
-                        <a href="/orders" class="card-order-button">Order
-                            Now</a>
-                    </div>
+                    <!-- Service cards injected by resources/js/products.js -->
                     <div class="first-service"></div>
                 </div>
             </div>
