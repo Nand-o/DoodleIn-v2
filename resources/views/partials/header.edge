@@ -25,6 +25,11 @@
         </ul>
     </nav>
 
-    <a href="/orders" class="order-button">Order Now</a>
+    <div style="display:flex;gap:0.75rem;align-items:center;">
+        @if(typeof showWishlist !== 'undefined' && showWishlist)
+            <a href="/wishlist" class="order-button">Wishlist <span class="wishlist-badge" aria-hidden="true">0</span></a>
+        @endif
+        <a href="/orders" class="order-button">Order Now</a>
+    </div>
 </header>
 @endif

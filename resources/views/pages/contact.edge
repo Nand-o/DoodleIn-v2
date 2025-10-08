@@ -1,4 +1,7 @@
 @layout.app({ title: 'Contact Us', headerType: 'normal' })
+@slot('meta')
+@vite(['resources/css/contact.css'])
+@endslot
 @slot('main')
 <main class="contact-page">
     <section class="contact-hero">
@@ -11,8 +14,8 @@
                 <p class="contact-note">Click the button below to open WhatsApp with the store number.</p>
 
                 <!-- Replace PHONE_NUMBER_HERE with the store WhatsApp number in international format, e.g. 6281234567890 -->
-                <a class="order-button contact-whatsapp" href="https://wa.me/PHONE_NUMBER_HERE" target="_blank"
-                    rel="noopener noreferrer">Message us</a>
+                <!-- Replace PHONE_NUMBER_HERE with the store WhatsApp number in international format, e.g. 6281234567890 -->
+                <a class="order-button contact-whatsapp" href="https://wa.me/PHONE_NUMBER_HERE" target="_blank" rel="noopener noreferrer">Message us</a>
             </div>
 
             <div class="contact-image">

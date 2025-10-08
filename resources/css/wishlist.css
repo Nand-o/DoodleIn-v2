@@ -1,0 +1,135 @@
+/* Wishlist page specific styles - follow product.css palette */
+
+body {
+    background-color: var(--gray-color);
+}
+
+.wishlist-page {
+    padding: 60px 55px;
+    background: var(--gray-color);
+    /* limit visual height for wishlist page */
+    height: 150vh;
+    overflow: hidden;
+}
+
+.wishlist-page h2 {
+    font-family: var(--font-family);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#wishlist-container {
+    display: grid;
+    /* use auto-fill so cards fill available space but don't get too wide */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.75rem;
+    align-items: start;
+    margin: 1.5rem auto;
+    max-width: 1400px; /* keep a readable line-length on very large monitors */
+    padding: 0 1rem;
+/* Make the wishlist list scrollable if items exceed max-height */
+.wishlist-page .product-listing {
+    max-height: calc(180vh - 160px); /* subtract header/spacing */
+    overflow-y: auto;
+    padding-right: 0.5rem; /* space for scrollbar */
+}
+}
+
+/* Cards in wishlist should be normal flow (not the slider full-height cards)
+   set a clear max-width and allow them to wrap in the grid */
+#wishlist-container .slider-card {
+    width: 100%;
+    max-width: 360px;
+    height: auto !important;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--white-color);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+    border-radius: 12px;
+    margin: 0 auto; /* center inside grid cell */
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+/* make remove button (which uses card-order-button class) look slightly different on wishlist page */
+#wishlist-container .card-order-button {
+    display: inline-block;
+    padding: 0.55rem 0.95rem;
+    border-radius: 10px;
+    background: var(--yellow-color);
+    color: var(--black-color);
+    font-weight: var(--fw-bold);
+    box-shadow: 0 3px 4px rgba(0,0,0,0.12);
+}
+
+/* On wishlist page we don't want absolute-positioned buttons to overlap content;
+   make Order button inline and adjust wishlist button style here as well. */
+#wishlist-container .slider-card .card-order-button {
+    position: static !important;
+    transform: none !important;
+    opacity: 1 !important;
+}
+
+#wishlist-container .slider-card .card-wishlist-button {
+    position: static !important;
+    transform: none !important;
+    opacity: 1 !important;
+    margin-left: 0.5rem;
+}
+
+/* Make card image constrained and centered */
+#wishlist-container .slider-card > img {
+    width: 100%;
+    height: 220px; /* fixed visible area for consistent card height */
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid var(--black-color);
+    background: #f7f7f7;
+}
+
+/* Card footer (price + button) layout */
+#wishlist-container .slider-card .product-desc {
+    display: flex;
+    flex-direction: column;
+}
+
+#wishlist-container .slider-card .card-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.75rem;
+    gap: 0.75rem;
+}
+
+/* Make controls wrap on very small widths so buttons don't overflow */
+#wishlist-container .slider-card .card-controls > * {
+    flex: 0 0 auto;
+}
+
+/* If product cards include price and description, ensure price stays on left */
+#wishlist-container .slider-card .product-price {
+    font-weight: var(--fw-bold);
+    font-size: 1.125rem;
+}
+
+@media (max-width: 900px) {
+    #wishlist-container {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    #wishlist-container .slider-card {
+        max-width: 100%;
+    }
+}
+
+/* Extra-large monitor tweak: allow slightly wider cards but keep line length */
+@media (min-width: 1600px) {
+    #wishlist-container {
+        max-width: 1800px;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+}

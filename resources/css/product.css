@@ -149,7 +149,39 @@ section#service {
     background-color: var(--yellow-color);
 }
 
+
+/* Ensure order button on slider cards is positioned and visible on hover */
+.slider-card .card-order-button {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    z-index: 200;
+    opacity: 0;
+}
+
 .slider-card:hover .card-order-button {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Wishlist button: place at right-bottom of the card and above the order button so it's clickable */
+.slider-card .card-wishlist-button {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.25rem;
+    z-index: 300;
+    opacity: 0;
+    transform: translateY(15px);
+    background-color: var(--yellow-color);
+    color: var(--black-color);
+    padding: 0.5rem 0.9rem;
+    border-radius: 28px;
+    cursor: pointer;
+    border: none;
+}
+
+.slider-card:hover .card-wishlist-button {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }

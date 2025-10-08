@@ -52,7 +52,7 @@ Fonts
 /* Altform - Light */
 @font-face {
     font-family: 'Altform TRIAL';
-    src: url('resources/fonts/AltformTRIAL-Light.woff') format('woff');
+    src: url('../fonts/AltformTRIAL-Light.woff') format('woff');
     font-weight: 300;
     font-style: normal;
 }
@@ -60,7 +60,7 @@ Fonts
 /* Altform - Regular */
 @font-face {
     font-family: 'Altform TRIAL';
-    src: url('resources/fonts/AltformTRIAL-Regular.woff') format('woff');
+    src: url('../fonts/AltformTRIAL-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
 }
@@ -68,7 +68,7 @@ Fonts
 /* Altform - Bold */
 @font-face {
     font-family: 'Altform TRIAL';
-    src: url('resources/fonts/AltformTRIAL-Bold.woff') format('woff');
+    src: url('../fonts/AltformTRIAL-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
 }
@@ -93,7 +93,8 @@ MAIN STYLES
 }
 
 body {
-    height: 513vh;
+    /* Use min-height so body grows with content but doesn't force huge whitespace */
+    min-height: 100vh;
     background-color: var(--gray-color);
 }
 
@@ -120,7 +121,7 @@ header {
 
     position: sticky;
     top: 20px;
-    z-index: 100;
+    z-index: 500;
 
     >img {
         width: 11.75rem;
@@ -172,6 +173,22 @@ nav ul.nav-links {
     font-weight: var(--fw-bold);
     color: var(--black-color);
     cursor: pointer;
+}
+
+/* Small badge to show wishlist count inside header's Wishlist button */
+.wishlist-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.35rem;
+    background: var(--black-color);
+    color: var(--white-color);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: var(--fw-bold);
 }
 
 section.hero {

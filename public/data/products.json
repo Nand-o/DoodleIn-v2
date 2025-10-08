@@ -1,56 +1,64 @@
 {
     "products": [
         {
-            "id": 1,
+            "id": 101,
+            "legacyId": 1,
             "name": "Doodle Art Cover Book",
             "description": "This is a book cover with a doodle art theme design.",
             "price": "$20",
             "image": "resources/images/products/coverbook.png"
         },
         {
-            "id": 2,
+            "id": 102,
+            "legacyId": 2,
             "name": "Doodle Sticker Pack",
             "description": "A pack of stickers featuring various doodle designs.",
             "price": "$7",
             "image": "resources/images/products/stickers.png"
         },
         {
-            "id": 3,
+            "id": 103,
+            "legacyId": 3,
             "name": "Doodle T-Shirt",
             "description": "Wear your imagination.",
             "price": "$12",
             "image": "resources/images/products/T-shirt.png"
         },
         {
-            "id": 4,
+            "id": 104,
+            "legacyId": 4,
             "name": "Doodle Shoes",
             "description": "Step into your story.",
             "price": "$62",
             "image": "resources/images/products/shoes.png"
         },
         {
-            "id": 5,
+            "id": 105,
+            "legacyId": 5,
             "name": "Doodle Tote Bag",
             "description": "Carry your creativity.",
             "price": "$15",
             "image": "resources/images/products/totebag.png"
         },
         {
-            "id": 6,
+            "id": 106,
+            "legacyId": 6,
             "name": "Doodle Phone case",
             "description": "A phone case that speaks your vibe.",
             "price": "$5",
             "image": "resources/images/products/casephone.png"
         },
         {
-            "id": 7,
+            "id": 107,
+            "legacyId": 7,
             "name": "Doodle Mug glass",
             "description": "A glass mug that blends function with flair.",
             "price": "$11.5",
             "image": "resources/images/products/mug.png"
         },
         {
-            "id": 8,
+            "id": 108,
+            "legacyId": 8,
             "name": "Doodle Phone Case Whale Limited Edition",
             "description": "Make waves with every call. This limited edition phone case features a whimsical whale in bold doodle art playful,protective, and impossible to ignore.",
             "price": "$99",
@@ -59,42 +67,48 @@
     ],
     "services": [
         {
-            "id": 1,
+            "id": 201,
+            "legacyId": 1,
             "name": "Doodle Decoration",
             "description": "Decorate with personality.",
             "price": "$8-25",
             "image": "resources/images/products/decor.png"
         },
         {
-            "id": 2,
+            "id": 202,
+            "legacyId": 2,
             "name": "Doodle Poster Design",
             "description": "Frame your imagination.",
             "price": "$12-20",
             "image": "resources/images/products/poster.png"
         },
         {
-            "id": 3,
+            "id": 203,
+            "legacyId": 3,
             "name": "Doodle Wall Painting Large Size",
             "description": "Turn your wall into a canvas of imagination.",
             "price": "$50-60",
             "image": "resources/images/products/wall-painting-large.png"
         },
         {
-            "id": 4,
+            "id": 204,
+            "legacyId": 4,
             "name": "Doodle Wall Painting Medium Size",
             "description": "Balance boldness and charm.",
             "price": "$35-40",
             "image": "resources/images/products/wall-painting.png"
         },
         {
-            "id": 5,
+            "id": 205,
+            "legacyId": 5,
             "name": "Doodle Wall Painting Small Size",
             "description": "Add a spark of creativity to your corner.",
             "price": "$25-30",
             "image": "resources/images/products/wall-painting-small.png"
         },
         {
-            "id": 6,
+            "id": 206,
+            "legacyId": 6,
             "name": "Custom Product Doodle Art",
             "description": "Your ideas, our lines.",
             "price": "$20-50",

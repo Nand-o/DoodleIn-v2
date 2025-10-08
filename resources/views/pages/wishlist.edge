@@ -1,0 +1,29 @@
+@layout.app({ title: 'Wishlist', headerType: 'normal' })
+@slot('meta')
+@vite(['resources/css/wishlist.css', 'resources/js/products.js'])
+@endslot
+@slot('main')
+<main class="wishlist-page">
+    <section class="product-listing">
+        <h2>Your Wishlist</h2>
+        <div id="wishlist-container">
+            <p>Loading...</p>
+        </div>
+    </section>
+
+    <script>
+        // Wait until products.js has exposed renderWishlistPage
+        document.addEventListener('DOMContentLoaded', function () {
+            const container = document.getElementById('wishlist-container')
+            if (window.renderWishlistPage) {
+                window.renderWishlistPage(container)
+            } else {
+                // try after a short delay
+                setTimeout(() => window.renderWishlistPage && window.renderWishlistPage(container), 300)
+            }
+        })
+    </script>
+</main>
+@endslot
+
+@end
