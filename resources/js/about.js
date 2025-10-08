@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (productsDiv) {
         productsDiv.addEventListener('click', () => {
-            window.location.href = './product.html';
+            window.location.href = '/products';
         });
     }
 
     if (orderDiv) {
         orderDiv.addEventListener('click', () => {
-            window.location.href = './order.html'; 
+            window.location.href = '/orders';
         });
     }
 });

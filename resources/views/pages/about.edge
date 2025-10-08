@@ -1,0 +1,50 @@
+@layout.app({ title: 'About' })
+@slot('meta')
+@vite(['resources/css/about.css', 'resources/js/about.js'])
+@endslot
+
+@slot('main')
+<main>
+    <section id="about" class="about-section">
+
+        <div class="about-content">
+            <img src="resources/images/Logo.svg" alt="DoodleIn Logo" class="logo-about">
+
+            <p>is a creative brand that specializes in crafting<br>
+                products
+                and providing services with a <br> distinctive doodle
+                art
+                style.</p>
+        </div>
+
+        <div class="about-motto">
+            <h1>OUR GOAL <br> IS PUT <br> SMILE IN <br> YOUR FACE</h1>
+
+            <img src="resources/images/Icon.svg" alt="Smiley Face Icon">
+        </div>
+
+        <div class="ballon-image-container">
+            <img src="resources/images/B-Air-Ballon.png" alt="Hot Air Ballon Icon" class="ballon-image first">
+            <img src="resources/images/B-Air-Ballon.png" alt="Hot Air Ballon Icon" class="ballon-image">
+        </div>
+    </section>
+
+    <section id="cta" class="cta-section">
+        <div class="cta-product" id="cta-products">
+            <h2>SEE OUR <br>
+                PRODUCTS & <br> SERVICES</h2>
+            <p>FUSE YOUR IMAGINATION WITH <br> DOODLEIN’S DOODLE ART TO
+                CRAFT <br>
+                TRULY UNIQUE ITEMS.</p>
+        </div>
+
+        <div class="cta-order" id="cta-order">
+            <h2>ORDER <br> NOW!</h2>
+            <p>LOOKING FOR A DOODLE DESIGN? <br>
+                LET'S MAKE IT HAPPEN.</p>
+        </div>
+    </section>
+</main>
+@endslot
+
+@end
