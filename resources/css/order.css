@@ -1,0 +1,255 @@
+:root {
+    --gray-color: #E6E6E6;
+    --black-color: #000000;
+    --white-color: #FFFFFF;
+    --yellow-color: #EFD30B;
+    --font-family: 'Altform TRIAL';
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-bold: 700;
+}
+
+body {
+    background-color: var(--white-color);
+    height: 130vh;
+}
+
+nav ul.nav-links {
+    width: 9.4375rem;
+    height: 3.5rem;
+    padding: 15px 20px;
+    flex-shrink: 0;
+    gap: 35px;
+
+    align-items: center;
+}
+
+.close-button {
+    background-color: var(--white-color);
+    border: 5px solid var(--white-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background-color: var(--yellow-color);
+    border: 5px solid var(--yellow-color);
+}
+
+
+.nav-link {
+    color: var(--white-color);
+
+}
+
+main {
+    height: 90vh;
+    width: 100%;
+    background-color: var(--black-color);
+}
+
+header {
+    margin: 30px 55px 20px 55px;
+
+    position: relative;
+    top: 0px;
+}
+
+section#order {
+    height: 85vh;
+    background-color: var(--black-color);
+    width: 100%;
+    display: flex;
+    padding-top: 3px;
+    gap: 3px;
+}
+
+.order-desc,
+.order-form {
+    flex: 1;
+    padding-top: 15px;
+    background-color: var(--white-color);
+}
+
+.order-desc {
+    padding: 17px 0px 17px 55px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    >h1 {
+        color: var(--black-color);
+        font-family: var(--font-family);
+        font-size: clamp(1.5rem, 1rem + 3vw, 4.375rem);
+        font-style: normal;
+        font-weight: var(--fw-bold);
+        line-height: normal;
+    }
+
+    >p {
+        color: var(--black-color);
+        font-family: var(--font-family);
+        font-size: clamp(0.875rem, 0.5rem + 1vw, 1.5625rem);
+        font-style: normal;
+        font-weight: var(--fw-light);
+        line-height: normal;
+    }
+}
+
+.order-form {
+    padding: 16px;
+}
+
+.order-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: var(--gray-color);
+
+    padding: 22px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.order-title {
+    flex-grow: 0.05;
+    color: var(--black-color);
+    font-family: var(--font-family);
+    border-bottom: 2px solid var(--black-color);
+}
+
+.order-list {
+    flex-grow: 1;
+    padding: 30px 0px 30px 0px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+
+    overflow: scroll;
+
+    border-bottom: 2px solid var(--black-color);
+}
+
+.order-item {
+    background-color: var(--white-color);
+    border-radius: 10px;
+    
+    padding: 0px;
+
+    display: flex;
+    flex-direction: column;
+
+    >.order-desc {
+        flex-grow: 0.1;
+        color: var(--black-color);
+        font-family: var(--font-family);
+        font-size: clamp(0.1rem, 0.5vw, 1.5rem);
+        display: flex;
+        flex-direction: column;
+        border-radius: 1rem;
+        gap: 0.5rem;
+        
+    }
+}
+
+.order-desc p,
+h2 {
+    font-size: clamp(0.5rem, 1vw, 1.5rem);
+}
+
+.order-total {
+    flex-grow: 0.1;
+    display: flex;
+    padding-top: 30px;
+
+    >.desc,
+    .price {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    >.order {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: end;
+    }
+}
+
+.order-button.total {
+    background-color: var(--white-color);
+    border: 0px;
+}
+
+.desc,
+.price {
+    color: var(--black-color);
+    font-family: var(--font-family);
+    font-size: clamp(0.875rem, 1vw, 1.5625rem);
+    font-style: normal;
+    font-weight: var(--fw-light);
+}
+
+.modal-overlay {
+    position: fixed; /* Tetap di layar bahkan saat scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Latar belakang gelap transparan */
+    
+    /* Pusatkan konten di tengah */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Sembunyikan secara default */
+    opacity: 0;
+    pointer-events: none; /* Agar tidak bisa di-klik saat tersembunyi */
+    
+    /* Animasi fade-in */
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.modal-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background-color: var(--yellow-color);
+    color: var(--black-color);
+    padding: 2rem 3rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+    transform: scale(0.9);
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal-overlay.visible .modal-content {
+    transform: scale(1);
+}
+
+.modal-content h2 {
+    font-size: 2rem;
+    font-family: var(--font-family);
+    font-weight: var(--fw-bold);
+    margin-bottom: 0.5rem;
+}
+
+.modal-content p {
+    font-size: 1.1rem;
+    color: var(--black-color);
+    font-family: var(--font-family);
+}

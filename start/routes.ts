@@ -10,3 +10,6 @@
 import router from '@adonisjs/core/services/router'
 
 router.on('/').render('pages/home')
+router.on('/about').render('pages/about')
+router.on('/products').render('pages/products')
+router.on('/orders').render('pages/orders')

@@ -1,0 +1,623 @@
+/* ==========================================================================
+RESET CSS & BOX SIZING
+   ========================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+ul,
+ol {
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ==========================================================================
+Fonts
+   ========================================================================== */
+
+/* Altform - Light */
+@font-face {
+    font-family: 'Altform TRIAL';
+    src: url('../fonts/AltformTRIAL-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* Altform - Regular */
+@font-face {
+    font-family: 'Altform TRIAL';
+    src: url('../fonts/AltformTRIAL-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Altform - Bold */
+@font-face {
+    font-family: 'Altform TRIAL';
+    src: url('../fonts/AltformTRIAL-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* ==========================================================================
+MAIN STYLES
+   ========================================================================== */
+
+:root {
+    --gray-color: #E6E6E6;
+    --black-color: #000000;
+    --white-color: #FFFFFF;
+    --yellow-color: #EFD30B;
+    --font-family: 'Altform TRIAL';
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-bold: 700;
+
+    --card-width: 20rem;
+    --card-gap: 2rem;
+    --card-count: 7;
+}
+
+body {
+    height: 513vh;
+    background-color: var(--gray-color);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+section.hero,
+section.about,
+section.products,
+section.motto,
+footer {
+    width: 100%;
+    padding: 0px 55px 0px 55px;
+}
+
+/* Styling Section Hero */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 55px 30px 55px;
+
+    position: sticky;
+    top: 20px;
+    z-index: 100;
+
+    >img {
+        width: 11.75rem;
+        height: 2.625rem;
+        cursor: pointer;
+    }
+}
+
+nav ul.nav-links {
+    display: flex;
+    width: 15.6875rem;
+    height: 3.5rem;
+    padding: 16px 30px 16px 35px;
+    border-radius: 35px;
+    flex-shrink: 0;
+    gap: 50px;
+    background: var(--black-color);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.nav-link {
+    font-family: var(--font-family);
+    font-weight: var(--fw-regular);
+    font-size: 1rem;
+    color: rgba(230, 230, 230, 0.62);
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: var(--white-color);
+    transition: color 0.3s ease-in-out;
+}
+
+.order-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 9.4375rem;
+    height: 3.5rem;
+    flex-shrink: 0;
+
+    border-radius: 35px;
+    background: var(--yellow-color);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+    font-family: var(--font-family);
+    font-size: 18px;
+    font-weight: var(--fw-bold);
+    color: var(--black-color);
+    cursor: pointer;
+}
+
+section.hero {
+    width: 100%;
+    min-height: calc(100vh - calc(30px + 30px + 3.5rem) + 3.75rem);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-content {
+    flex-grow: 0.01;
+
+    display: flex;
+    gap: 2.5em;
+
+    >.wiki,
+    .tagline {
+        width: 50%;
+    }
+}
+
+.wiki p {
+    padding-top: 1.19rem;
+    width: 26.75rem;
+    flex-shrink: 0;
+
+    color: var(--black-color);
+    font-family: var(--font-family);
+    font-size: 1.125rem;
+    font-weight: var(--fw-regular);
+    line-height: normal;
+}
+
+.tagline h1 {
+    width: 42.1875rem;
+    color: var(--black-color);
+    font-family: var(--font-family);
+    font-size: calc(5.3125rem - 0rem);
+    font-weight: var(--fw-bold);
+    line-height: 4.8125rem;
+}
+
+.hero-image {
+    width: 25vw;
+    height: auto;
+    position: absolute;
+    bottom: -5vh;
+    left: 15vw;
+}
+
+/* Styling Section About */
+section.about {
+    background-color: var(--black-color);
+    height: 110vh;
+    display: flex;
+    align-items: center;
+}
+
+.about-content {
+    display: flex;
+    flex: 1;
+    height: 50vh;
+    gap: 10rem;
+    background-color: var(--black-color);
+
+    >.about-text {
+        width: 50%;
+    }
+
+    >.about-image {
+        width: 30%;
+    }
+}
+
+
+.about-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    >p {
+        max-width: 50rem;
+        color: var(--white-color);
+        font-family: "Altform TRIAL";
+        font-size: 2.1875rem;
+        font-weight: var(--fw-light);
+        line-height: normal;
+    }
+
+    >img {
+        margin-right: 3em;
+        align-self: flex-end;
+    }
+}
+
+.about-image {
+    background-color: var(--white-color);
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >img {
+        width: 23vw;
+        height: auto;
+        background-color: red;
+    }
+}
+
+/* Gaya untuk header saat di atas section gelap */
+
+header.header-inverted {
+    >.logo {
+        filter: invert(1);
+        transition: filter 0.3s ease-in-out;
+    }
+
+    >nav ul {
+        background-color: var(--white-color);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    >nav .nav-link {
+        color: var(--black-color);
+        transition: color 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+    >nav .nav-link:hover {
+        color: var(--yellow-color);
+        transition: color 0.3s ease-in-out;
+    }
+}
+
+/* Background Pattern About Section */
+
+section.about {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Lingkaran Kiri Atas */
+section.about::before {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid var(--gray-color);
+
+    width: 80vw;
+    height: 80vw;
+
+    top: -55vw;
+    left: -28vw;
+}
+
+/* Lingkaran Kanan Bawah */
+section.about::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid var(--gray-color);
+
+    width: 80vw;
+    height: 80vw;
+
+    bottom: -55vw;
+    right: -28vw;
+}
+
+/* Styling Section Products */
+section.products {
+    width: 100%;
+    height: 200vh;
+    padding: 125px 55px 0px 55px;
+    background-color: var(--white-color);
+    display: flex;
+    flex-direction: column;
+    gap: 19vh;
+}
+
+.products-banner {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    background-color: red;
+    padding-top: 8.25rem;
+    flex-shrink: 0;
+    background: url('../assets/DoodleBig-Art.svg') -0.398px -9.19px / 100.06% 102.46% no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7rem;
+}
+
+.stroked-text {
+    position: relative;
+    z-index: 2;
+
+    color: var(--black-color);
+    font-family: var(--font-family);
+    font-size: clamp(2rem, 1rem + 2vw, 5rem);
+    font-weight: var(--fw-bold);
+    line-height: normal;
+}
+
+.stroked-text::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    color: transparent;
+    -webkit-text-stroke-width: 1.5rem;
+    -webkit-text-stroke-color: var(--white-color);
+
+    z-index: -1;
+}
+
+p.stroked-text {
+    font-size: clamp(2rem, 1rem + 2vw, 6rem);
+    ;
+    max-width: 50.25rem;
+    text-align: center;
+}
+
+p.stroked-text::before {
+    -webkit-text-stroke-width: 2.2rem;
+}
+
+/* Styling Product Gallery */
+
+.gallery-wrapper {
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+.gallery-track {
+    display: flex;
+    gap: var(--card-gap);
+
+    width: calc(var(--card-count) * 2 * (var(--card-width) + var(--card-gap)));
+
+    animation: scroll 30s linear infinite;
+}
+
+.product-item {
+    flex-shrink: 0;
+    width: var(--card-width);
+    height: 50vh;
+    width: 20vw;
+    background-color: var(--gray-color);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+
+    padding: 80px 55px 25px 55px;
+
+    > img {
+        flex-grow: 1;
+        min-height: 0;
+        width: auto;
+        height: auto;
+        align-self: center;
+    }
+
+    > .product-desc {
+        flex-grow: 0.05;
+        color: var(--black-color);
+        font-family: var(--font-family);
+        font-size: clamp(0.75rem, 0.5vw, 1.5rem);
+
+    }
+}
+
+.card-order-button {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+
+    background-color: var(--white-color);
+    color: var(--black-color);
+    font-family: var(--font-family);
+    padding: 0.75rem 1.5rem;
+    border-radius: 35px;
+    font-weight: var(--fw-bold);
+
+    opacity: 0;
+
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.product-item:hover .card-order-button {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(var(--card-count) * -1 * (var(--card-width) + var(--card-gap))));
+    }
+}
+
+.gallery-wrapper:hover .gallery-track {
+    animation-play-state: paused;
+}
+
+.more-products-button {
+    background-color: var(--black-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    align-self: center;
+
+    width: 20vw;
+    height: 10vh;
+    border-radius: 3rem;
+
+    color: var(--white-color);
+    font-family: var(--font-family);
+    font-size: clamp(1rem, 0.5rem + 1vw, 1.5rem);
+    font-style: normal;
+    font-weight: var(--fw-regular);
+    line-height: normal;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.more-products-button:hover {
+    color: var(--yellow-color);
+}
+
+/* Styling Motto & Footer */
+section.motto {
+    margin-top: 2vh;
+    width: 100%;
+    height: 60vh;
+    background-color: var(--gray-color);
+}
+
+.motto-content {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 12vh;
+
+    gap: 3rem;
+
+    >.order-button {
+        width: 15vw;
+        height: 5vh;
+        font-size: 1.25rem;
+    }
+}
+
+.motto-text {
+    max-width: 73.75rem;
+
+
+    >h1 {
+        text-align: center;
+        color: var(--black-color);
+        font-family: var(--font-family);
+        font-size: clamp(2rem, 1rem + 2vw, 5rem);
+        font-weight: var(--fw-bold);
+        line-height: normal;
+    }
+}
+
+
+
+footer {
+    width: 100%;
+    height: 40vh;
+    padding: 0px 55px 0px 55px;
+    background-color: var(--black-color);
+    color: var(--white-color);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: var(--fw-regular);
+    line-height: normal;
+
+    display: flex;
+    align-items: center;
+}
+
+.footer-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    >p {
+        align-self: flex-end;
+        margin-bottom: 1rem;
+    }
+}
+
+.footer-nav {
+    width: 30vw;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1.5rem;
+}
+
+.footer-link,
+.social-link {
+    margin-left: 5rem;
+    color: var(--white-color);
+    font-family: var(--font-family);
+    font-size: clamp(0.875rem, 0.5rem + 0.5vw, 1.25rem);
+    font-style: normal;
+    font-weight: var(--fw-regular);
+    line-height: 2.7rem;
+}
+
+
+
+.footer-logo {
+    filter: invert(1);
+    max-width: 35vw;
+    height: 15vh;
+    align-self: flex-end;
+
+}
