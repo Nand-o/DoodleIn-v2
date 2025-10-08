@@ -23,13 +23,9 @@
 	{{-- Main slot for page content --}}
 	@if ($slots.main)
 	{{{ await $slots.main() }}}
-	@else
-	<!-- Default content when no main slot provided -->
-	<div class="p-8">No content provided for this layout.</div>
 	@endif
 
 	@include('partials/footer')
-
 </body>
 
 </html>
