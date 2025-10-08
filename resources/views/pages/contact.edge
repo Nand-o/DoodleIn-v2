@@ -1,0 +1,26 @@
+@layout.app({ title: 'Contact Us', headerType: 'normal' })
+@slot('main')
+<main class="contact-page">
+    <section class="contact-hero">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h1>Contact DoodleIn</h1>
+                <p>If you have questions, custom requests, or want to place an order directly, message us on WhatsApp.
+                </p>
+
+                <p class="contact-note">Click the button below to open WhatsApp with the store number.</p>
+
+                <!-- Replace PHONE_NUMBER_HERE with the store WhatsApp number in international format, e.g. 6281234567890 -->
+                <a class="order-button contact-whatsapp" href="https://wa.me/PHONE_NUMBER_HERE" target="_blank"
+                    rel="noopener noreferrer">Message us</a>
+            </div>
+
+            <div class="contact-image">
+                <img src="resources/images/about-image.png" alt="Contact illustration">
+            </div>
+        </div>
+    </section>
+</main>
+@endslot
+
+@end

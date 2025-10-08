@@ -1,0 +1,96 @@
+/* Contact page specific styles - consistent with main palette and typography */
+
+body {
+    background-color: var(--white-color);
+    height: 130vh;
+}
+
+main {
+    height: 90vh;
+}
+
+.contact-page {
+    width: 100%;
+    padding: 60px 55px;
+    background: var(--white-color);
+    font-family: var(--font-family);
+    color: var(--black-color);
+}
+
+.contact-hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.contact-wrapper {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    flex: 1 1 50%;
+}
+
+.contact-info h1 {
+    font-size: 2.5rem;
+    font-weight: var(--fw-bold);
+    margin-bottom: 1rem;
+}
+
+.contact-info p {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: var(--black-color);
+}
+
+.contact-note {
+    font-size: 0.95rem;
+    color: rgba(0,0,0,0.7);
+    margin-bottom: 1.25rem;
+}
+
+.contact-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.25rem;
+    border-radius: 35px;
+    background: var(--yellow-color);
+    color: var(--black-color);
+    font-weight: var(--fw-bold);
+}
+
+.contact-image {
+    flex: 0 0 38%;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-image img {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .contact-wrapper {
+        flex-direction: column-reverse;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .contact-image {
+        width: 100%;
+    }
+
+    .contact-info h1 {
+        font-size: 1.75rem;
+    }
+}
