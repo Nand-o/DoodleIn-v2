@@ -64,6 +64,26 @@ async function renderHomeGallery() {
 
             track.appendChild(div);
         });
+
+        itemsToShow.forEach(item => {
+            // Normalize image path: resources/images/... -> /images/...
+            let imgSrc = item.image || '';
+            imgSrc = imgSrc.replace(/^resources\/images\//, '/images/');
+
+            const div = document.createElement('div');
+            div.className = 'product-item';
+
+            div.innerHTML = `
+                <img src="${imgSrc}" alt="${escapeHtml(item.name || '')}" />
+                <div class="product-desc">
+                    <h2>${escapeHtml(item.name || '')}</h2>
+                    <p>${escapeHtml(item.price || '')}</p>
+                </div>
+                <a href="/orders" class="card-order-button">Order Now</a>
+            `;
+
+            track.appendChild(div);
+        });
     } catch (err) {
         // fail silently in production-like setup
         console.error('Failed to render home gallery', err);
