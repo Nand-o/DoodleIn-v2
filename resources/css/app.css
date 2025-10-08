@@ -1,0 +1,6 @@
+/**
+ * Main application stylesheet entry point
+ * This file is the Vite entry point that imports all necessary CSS
+ */
+
+@import './main.css';
