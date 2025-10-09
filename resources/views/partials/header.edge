@@ -26,6 +26,10 @@
     </nav>
 
     <div style="display:flex;gap:0.75rem;align-items:center;">
+        @if(typeof showSearch !== 'undefined' && showSearch)
+            <input id= "search" class="search-input" type="text" placeholder="Search products..." aria-label="Search products" />
+        @endif
+        
         @if(typeof showWishlist !== 'undefined' && showWishlist)
             <a href="/wishlist" class="order-button">Wishlist <span class="wishlist-badge" aria-hidden="true">0</span></a>
         @endif

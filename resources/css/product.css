@@ -32,22 +32,6 @@ body::before {
     z-index: -1
 }
 
-/* Small badge to show wishlist count inside header's Wishlist button */
-.wishlist-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 0.5rem;
-    min-width: 1.25rem;
-    height: 1.25rem;
-    padding: 0 0.35rem;
-    background: var(--black-color);
-    color: var(--white-color);
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: var(--fw-bold);
-}
-
 main {
     height: 260vh;
 }
@@ -234,4 +218,3 @@ section#service {
     opacity: 0.4;
     cursor: not-allowed;
 }
-

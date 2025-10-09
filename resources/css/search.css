@@ -1,0 +1,152 @@
+/* Search page styles */
+main {
+    min-height: 80vh;
+    padding: 0rem 2rem;
+}
+
+.product-listing h2 {
+    font-family: var(--font-family);
+}
+
+.search-title {
+    font-family: var(--font-family);
+    font-size: 2rem;
+    margin-left: 1rem;
+}
+
+.search-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
+    align-items: stretch;
+}
+
+.search-card {
+    background: #eee;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 0 0 6px #e9e9e9 inset;
+    display: flex;
+    flex-direction: column;
+    min-height: 360px;
+}
+
+.search-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.search-card-body {
+    padding: 12px 6px 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1 1 auto;
+}
+
+.search-card h3 {
+    font-size: 1.05rem;
+    margin: 0 0 8px 0;
+}
+
+.search-card p {
+    font-size: 0.9rem;
+    color: #444;
+    margin: 0 0 12px 0;
+}
+
+.search-card-price {
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.card-order-button {
+    background: #ffd902;
+    border-radius: 8px;
+    padding: 6px 10px;
+    border: 0;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+.wish-tap {
+    animation: wishTap 200ms ease-in-out;
+}
+
+@keyframes wishTap {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.94);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.search-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
+
+/* Ensure action buttons inside search cards are visible (not absolute) */
+.search-card .card-order-button {
+    position: static !important;
+    transform: none !important;
+    opacity: 1 !important;
+    padding: 0.5rem 0.75rem;
+    border-radius: 20px;
+    background: var(--white-color);
+    color: var(--black-color);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.08);
+}
+
+.search-card .card-wishlist-button {
+    background: var(--yellow-color);
+    color: var(--black-color);
+    font-weight: var(--fw-bold);
+}
+
+/* tap animation for wishlist button */
+.wish-tap {
+    animation: wish-tap 200ms ease-in-out;
+}
+
+@keyframes wish-tap {
+    0% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+
+    50% {
+        transform: scale(0.94);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+}
+
+/* Make wishlist button look like wishlist page (inline, visible) */
+.search-card .card-wishlist-button {
+    display: inline-block;
+    padding: 0.55rem 0.9rem;
+    border-radius: 10px;
+}
+
+*** End Patch .search-card-price {
+    font-weight: var(--fw-bold);
+}
+
+.search-page .product-listing {
+    padding: 2rem 0;
+}

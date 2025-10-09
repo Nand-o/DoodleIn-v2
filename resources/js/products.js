@@ -211,6 +211,48 @@ function updateWishlistBadge() {
 
 // Expose for other scripts and initialize on load
 window.updateWishlistBadge = updateWishlistBadge
+window.getWishlist = getWishlist
+window.isWishlisted = isWishlisted
+window.toggleWishlist = toggleWishlist
+
+// Provide renderSearchResults from products.js so search page can call it early
+window.renderSearchResults = async function (container, query) {
+    if (!container) return
+    container.innerHTML = ''
+    const q = (query || '').trim().toLowerCase()
+    if (!q) {
+        container.innerHTML = '<p>Please enter a search query.</p>'
+        return
+    }
+
+    const data = await fetchData()
+    const items = []
+    ;(data.products || []).forEach(p => items.push(p))
+    ;(data.services || []).forEach(s => items.push(s))
+
+    const matches = items.filter(it => (it.name || '').toLowerCase().includes(q))
+    if (matches.length === 0) {
+        container.innerHTML = '<p>No results found.</p>'
+        return
+    }
+
+    const grid = document.createElement('div')
+    grid.className = 'search-results-grid'
+
+    matches.forEach(item => {
+        // reuse createCard but convert class to search-card so search.css rules apply
+        const card = createCard(item)
+        card.classList.remove('slider-card')
+        card.classList.add('search-card')
+        // ensure image path is normalized (createCard may have normalized earlier)
+        if (card.querySelector('img') && card.querySelector('img').src && card.querySelector('img').src.startsWith(window.location.origin + '/resources/images')) {
+            card.querySelector('img').src = card.querySelector('img').src.replace('/resources/images/', '/images/')
+        }
+        grid.appendChild(card)
+    })
+
+    container.appendChild(grid)
+}
 
 // Helper to render wishlist page client-side
 function renderWishlistPage(container) {

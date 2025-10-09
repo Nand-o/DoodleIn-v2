@@ -623,3 +623,29 @@ footer {
     align-self: flex-end;
 
 }
+
+/* Small badge to show wishlist count inside header's Wishlist button */
+.wishlist-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.35rem;
+    background: var(--black-color);
+    color: var(--white-color);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: var(--fw-bold);
+}
+
+.search-input {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--black-color);
+    border-radius: 999px;
+    font-size: 1rem;
+    font-family: var(--font-family);
+    outline: none;
+    width: 300px;
+}

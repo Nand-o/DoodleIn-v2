@@ -1,0 +1,50 @@
+@layout.app({ title: 'Search Results | DoodleIn', headerType: 'normal', showWishlist: true, showSearch: true })
+@slot('meta')
+@vite(['resources/css/search.css', 'resources/js/products.js', 'resources/js/search.js'])
+@endslot
+
+@slot('main')
+<main class="search-page">
+    <section class="product-listing">
+        <h2 class="search-title">Search Results</h2>
+        <div id="search-results-container">
+            <p>Loading...</p>
+        </div>
+    </section>
+
+    <script>
+        // Wait until renderSearchResults is available (polling fallback)
+        document.addEventListener('DOMContentLoaded', function () {
+            const container = document.getElementById('search-results-container')
+            const urlParams = new URLSearchParams(window.location.search)
+            const query = urlParams.get('q') || ''
+
+            const intervalMs = 50
+            const maxWait = 2000 // ms
+            let waited = 0
+
+            function tryRender() {
+                try {
+                    if (typeof window.renderSearchResults === 'function') {
+                        window.renderSearchResults(container, query)
+                        return
+                    }
+                } catch (err) {
+                    console.error('renderSearchResults check failed', err)
+                }
+
+                if (waited < maxWait) {
+                    waited += intervalMs
+                    setTimeout(tryRender, intervalMs)
+                } else {
+                    console.error('renderSearchResults not available after', maxWait, 'ms')
+                    container.innerHTML = '<p>Search is currently unavailable. Please try again shortly.</p>'
+                }
+            }
+
+            tryRender()
+        })
+    </script>
+</main>
+@endslot
+@end
