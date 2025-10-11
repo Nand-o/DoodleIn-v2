@@ -114,7 +114,13 @@ async function renderProducts() {
 
     if (productTrack) {
         productTrack.innerHTML = ''
-        data.products.forEach((p) => {
+
+        // load custom products from localStorage (sellerProducts)
+        const customProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]')
+        // build combined list: original products first then custom
+        const combinedProducts = ([]).concat(data.products || [], customProducts)
+
+        combinedProducts.forEach((p) => {
             // normalize image path from resources/images/... to /images/...
             if (p.image && p.image.startsWith('resources/images/')) {
                 p.image = p.image.replace(/^resources\/images\//, '/images/')
@@ -125,7 +131,12 @@ async function renderProducts() {
 
     if (serviceTrack) {
         serviceTrack.innerHTML = ''
-        data.services.forEach((s) => {
+
+        // load custom services from localStorage (sellerServices)
+        const customServices = JSON.parse(localStorage.getItem('sellerServices') || '[]')
+        const combinedServices = ([]).concat(data.services || [], customServices)
+
+        combinedServices.forEach((s) => {
             if (s.image && s.image.startsWith('resources/images/')) {
                 s.image = s.image.replace(/^resources\/images\//, '/images/')
             }

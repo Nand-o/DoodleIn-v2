@@ -1,0 +1,22 @@
+import { BaseSchema } from '@adonisjs/lucid/schema'
+
+export default class extends BaseSchema {
+  protected tableName = 'services'
+
+  async up() {
+    this.schema.createTable(this.tableName, (table) => {
+      table.integer('id').primary()
+      table.text('name').notNullable()
+      table.text('description').notNullable()
+      table.decimal('price', 10, 2).notNullable()
+      table.text('image_url').notNullable()
+
+      table.timestamp('created_at')
+      table.timestamp('updated_at')
+    })
+  }
+
+  async down() {
+    this.schema.dropTable(this.tableName)
+  }
+}
