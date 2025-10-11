@@ -215,6 +215,55 @@ window.getWishlist = getWishlist
 window.isWishlisted = isWishlisted
 window.toggleWishlist = toggleWishlist
 
+// Helper function to create search result card with product-card style
+function createSearchCard(item) {
+    const card = document.createElement('div')
+    card.className = 'product-card'
+    card.dataset.id = String(item.id)
+
+    const img = document.createElement('img')
+    img.src = item.image
+    img.alt = item.name
+    img.className = 'product-image'
+
+    const productInfo = document.createElement('div')
+    productInfo.className = 'product-info'
+
+    const h4 = document.createElement('h4')
+    h4.textContent = item.name
+
+    const priceDiv = document.createElement('div')
+    priceDiv.className = 'product-price'
+    priceDiv.textContent = item.price
+
+    const p = document.createElement('p')
+    p.className = 'product-description'
+    p.textContent = item.description
+
+    // Wishlist button
+    const wishlistBtn = document.createElement('button')
+    wishlistBtn.className = 'btn-delete card-wishlist-button'
+    wishlistBtn.type = 'button'
+    wishlistBtn.dataset.id = String(item.id)
+    wishlistBtn.textContent = isWishlisted(item.id) ? 'Remove from Wishlist' : 'Add to Wishlist'
+    wishlistBtn.style.background = isWishlisted(item.id) ? '#f44336' : '#4CAF50'
+    wishlistBtn.addEventListener('click', () => {
+        toggleWishlist(item.id)
+        wishlistBtn.textContent = isWishlisted(item.id) ? 'Remove from Wishlist' : 'Add to Wishlist'
+        wishlistBtn.style.background = isWishlisted(item.id) ? '#f44336' : '#4CAF50'
+    })
+
+    productInfo.appendChild(h4)
+    productInfo.appendChild(priceDiv)
+    productInfo.appendChild(p)
+    productInfo.appendChild(wishlistBtn)
+
+    card.appendChild(img)
+    card.appendChild(productInfo)
+
+    return card
+}
+
 // Provide renderSearchResults from products.js so search page can call it early
 window.renderSearchResults = async function (container, query) {
     if (!container) return
@@ -237,17 +286,10 @@ window.renderSearchResults = async function (container, query) {
     }
 
     const grid = document.createElement('div')
-    grid.className = 'search-results-grid'
+    grid.className = 'product-grid'
 
     matches.forEach(item => {
-        // reuse createCard but convert class to search-card so search.css rules apply
-        const card = createCard(item)
-        card.classList.remove('slider-card')
-        card.classList.add('search-card')
-        // ensure image path is normalized (createCard may have normalized earlier)
-        if (card.querySelector('img') && card.querySelector('img').src && card.querySelector('img').src.startsWith(window.location.origin + '/resources/images')) {
-            card.querySelector('img').src = card.querySelector('img').src.replace('/resources/images/', '/images/')
-        }
+        const card = createSearchCard(item)
         grid.appendChild(card)
     })
 

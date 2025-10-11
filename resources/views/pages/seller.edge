@@ -1,0 +1,84 @@
+@layout.app({ title: 'Seller Dashboard | DoodleIn', active: 'seller', headerType: 'normal', showWishlist: false, showSearch: false })
+@slot('meta')
+@vite(['resources/css/seller.css', 'resources/js/seller.js'])
+@endslot
+
+@slot('main')
+    <!-- Login Container -->
+    <div id="loginContainer" class="seller-login-container">
+        <div class="seller-login-box">
+            <h2>🎨 Seller Login</h2>
+            <div id="errorMessage" class="error-message"></div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Seller Dashboard -->
+    <div id="dashboard" class="seller-dashboard container">
+        <div class="dashboard-header">
+            <h1>Seller Dashboard</h1>
+            <button id="logoutBtn" class="btn-logout">Logout</button>
+        </div>
+
+        <div class="dashboard-tabs">
+            <button class="tab-btn active" data-tab="productsTab">Products & Services</button>
+            <button class="tab-btn" data-tab="addProductTab">Add Item</button>
+            <button class="tab-btn" data-tab="wishlistTab">Wishlist</button>
+        </div>
+
+        <!-- Products Tab -->
+        <div id="productsTab" class="tab-content active">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="margin: 0;">All Products & Services</h3>
+                <button id="restoreBtn" class="btn-restore" style="padding: 0.5rem 1rem; background: #2196F3; color: white; border: none; border-radius: 6px; cursor: pointer; display: none;">Restore Hidden Items</button>
+            </div>
+            <div id="productGrid" class="product-grid"></div>
+        </div>
+
+        <!-- Add Product Tab -->
+        <div id="addProductTab" class="tab-content">
+            <div class="add-product-form">
+                <h3>Add New Product/Service</h3>
+                <div id="successMessage" class="success-message">Product added successfully!</div>
+                <form id="addProductForm">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Price (Rp)</label>
+                        <input type="number" id="productPrice" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Description</label>
+                        <input type="text" id="productDescription" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">Image URL (optional)</label>
+                        <input type="url" id="productImage" placeholder="https://example.com/image.jpg">
+                    </div>
+                    <button type="submit" class="btn-add-product">Add Product</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Wishlist Tab -->
+        <div id="wishlistTab" class="tab-content">
+            <div class="wishlist-container">
+                <h3>Customer Wishlist</h3>
+                <div id="wishlistItems" class="wishlist-items"></div>
+            </div>
+        </div>
+    </div>
+@endslot
+@end

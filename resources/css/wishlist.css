@@ -27,12 +27,13 @@ body {
     margin: 1.5rem auto;
     max-width: 1400px; /* keep a readable line-length on very large monitors */
     padding: 0 1rem;
+}
+
 /* Make the wishlist list scrollable if items exceed max-height */
 .wishlist-page .product-listing {
     max-height: calc(180vh - 160px); /* subtract header/spacing */
     overflow-y: auto;
     padding-right: 0.5rem; /* space for scrollbar */
-}
 }
 
 /* Cards in wishlist should be normal flow (not the slider full-height cards)
