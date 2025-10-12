@@ -63,7 +63,7 @@ function createCard(item) {
 
     const price = document.createElement('h2')
     price.className = 'product-price'
-    price.textContent = item.price
+    price.textContent = `$${item.price}`
 
     const a = document.createElement('a')
     a.href = '/orders'
@@ -308,7 +308,7 @@ function createSearchCard(item) {
 
     const priceDiv = document.createElement('div')
     priceDiv.className = 'product-price'
-    priceDiv.textContent = item.price
+    priceDiv.textContent = `$${item.price}`
 
     const p = document.createElement('p')
     p.className = 'product-description'
@@ -324,7 +324,8 @@ function createSearchCard(item) {
     const updateButtonState = () => {
         const inWishlist = isWishlisted(item.id)
         wishlistBtn.textContent = inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'
-        wishlistBtn.style.background = inWishlist ? '#f44336' : '#4CAF50'
+        wishlistBtn.className = inWishlist ? 'btn-delete card-wishlist-button' : 'card-wishlist-button'
+        // wishlistBtn.style.background = inWishlist ? '#f44336' : '#4CAF50'
     }
     
     // Set initial state

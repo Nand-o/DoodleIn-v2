@@ -60,7 +60,7 @@ export default class ServicesController {
   public async destroy({ params, response }: any) {
     try {
       const service = await Service.find(params.id)
-      
+
       if (!service) {
         return response.status(404).json({ error: 'Service not found' })
       }

@@ -192,7 +192,7 @@ function renderProducts() {
             <img src="${product.image}" alt="${product.name}" class="product-image">
             <div class="product-info">
                 <h4>${product.name}</h4>
-                <div class="product-price">${product.price}</div>
+                <div class="product-price">$${product.price}</div>
                 <p class="product-description">${product.description}</p>
                 <button class="btn-delete" data-id="${product.id}">Delete from Database</button>
             </div>
@@ -266,7 +266,7 @@ function renderWishlist() {
             <img src="${product.image}" alt="${product.name}" class="wishlist-image">
             <div class="wishlist-info">
                 <h4>${product.name}</h4>
-                <div class="wishlist-user">Price: ${product.price}</div>
+                <div class="wishlist-user">Price: $${product.price}</div>
                 <div class="wishlist-date">${product.description}</div>
             </div>
         </div>

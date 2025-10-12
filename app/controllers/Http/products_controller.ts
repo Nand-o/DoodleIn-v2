@@ -61,7 +61,7 @@ export default class ProductsController {
   public async destroy({ params, response }: any) {
     try {
       const product = await Product.find(params.id)
-      
+
       if (!product) {
         return response.status(404).json({ error: 'Product not found' })
       }
