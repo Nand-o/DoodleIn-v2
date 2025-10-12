@@ -279,7 +279,7 @@ async function loadProducts() {
         let productsData = []
         let servicesData = []
 
-        // try API endpoints first
+        // Fetch from API endpoints
         try {
             const [pRes, sRes] = await Promise.all([
                 fetch('/api/products'),
@@ -290,17 +290,14 @@ async function loadProducts() {
                 productsData = pJson.products || pJson || []
                 servicesData = sJson.services || sJson || []
             } else {
-                throw new Error('API returned non-ok status')
+                console.error('API returned non-ok status')
+                productsData = []
+                servicesData = []
             }
         } catch (e) {
-            // fallback to legacy static JSON files
-            const [pRes, sRes] = await Promise.all([
-                fetch('/data/products.json'),
-                fetch('/data/services.json')
-            ])
-            const [pJson, sJson] = await Promise.all([pRes.json(), sRes.json()])
-            productsData = pJson.products || []
-            servicesData = sJson.services || []
+            console.error('Failed to fetch from API:', e)
+            productsData = []
+            servicesData = []
         }
 
         // assign

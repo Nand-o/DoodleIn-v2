@@ -365,7 +365,7 @@ section.products {
     background-color: red;
     padding-top: 8.25rem;
     flex-shrink: 0;
-    background: url('/resources/images/DoodleBig-Art.svg') -0.398px -9.19px / 100.06% 102.46% no-repeat;
+    background: url('/images/static/DoodleBig-Art.svg') -0.398px -9.19px / 100.06% 102.46% no-repeat;
 
     display: flex;
     flex-direction: column;

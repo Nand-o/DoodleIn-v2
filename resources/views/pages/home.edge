@@ -1,95 +1,97 @@
 @layout.app({title: 'DoodleIn', headerType: 'normal'})
 @slot('main')
 <main>
-    <section id="hero-section" class="hero">
-        <div class="hero-content">
+    <div class="sections-container">
+        <section id="hero-section" class="hero">
+            <div class="hero-content">
 
-            <div class="wiki">
-                <p>
-                    A <strong>doodle </strong>is a drawing made while a
-                    person's attention is otherwise occupied. Doodles
-                    are simple drawings that can have concrete
-                    representational meaning or may just be composed of
-                    random and abstract lines or shapes, generally
-                    without ever lifting the drawing device from the
-                    paper, in which case it is usually called a
-                    scribble.
-                </p>
+                <div class="wiki">
+                    <p>
+                        A <strong>doodle </strong>is a drawing made while a
+                        person's attention is otherwise occupied. Doodles
+                        are simple drawings that can have concrete
+                        representational meaning or may just be composed of
+                        random and abstract lines or shapes, generally
+                        without ever lifting the drawing device from the
+                        paper, in which case it is usually called a
+                        scribble.
+                    </p>
+                </div>
+
+                <div class="tagline">
+                    <h1>
+                        TRANSFORM YOUR PRODUCT WITH CREATIVE DOODLE
+                        ART.
+                    </h1>
+                </div>
+
             </div>
 
-            <div class="tagline">
-                <h1>
-                    TRANSFORM YOUR PRODUCT WITH CREATIVE DOODLE
-                    ART.
-                </h1>
-            </div>
-
-        </div>
-
-        <div class="hero-image">
-            <img src="resources/images/hero-image.png" alt="Hero Image" />
-        </div>
-    </section>
-
-    <section id="about-section" class="about">
-        <div class="about-content">
-
-            <div class="about-text">
-                <img src="resources/images/Air-Ballon.png" alt="Hot Air Ballon Icon" />
-                <p>
-                    <strong>DoodleIn </strong>is a creative brand that
-                    specializes in
-                    crafting products and
-                    providing services with a distinctive doodle art
-                    style.
-                </p>
-            </div>
-
-            <div class="about-image">
-                <img src="resources/images/about-image.png" alt="About Image" />
-            </div>
-        </div>
-    </section>
-
-    <section id="products-section" class="products">
-        <div class="products-banner">
-            <h2 class="stroked-text" data-text="OUR PRODUCTS">
-                OUR
-                PRODUCTS
-            </h2>
-            <p class="stroked-text" data-text="Looking for a doodle design?
-                        Let’s make it happen.">
-                Looking for a doodle design?
-                Let’s make it happen.
-            </p>
-        </div>
-
-        <section class="product-gallery">
-        <div class="gallery-wrapper">
-                <!-- gallery-track will be populated from public/data/products.json by resources/js/main.js -->
-                <!-- Add or change data-max to limit how many products show on the home gallery -->
-                <div class="gallery-track" data-max="7"></div>
+            <div class="hero-image">
+                <img src="/images/static/hero-image.png" alt="Hero Image" />
             </div>
         </section>
-        <a href="/products" class="more-products-button">Let’s Get
-            Some
-            Doodle!</a>
-    </section>
 
-    <section id="motto-section" class="motto">
-        <div class="motto-content">
-            <div class="motto-text">
-                <h1>
-                    FUSE YOUR IMAGINATION<br />WITH DOODLEIN’S DOODLE
-                    <br />ART TO
-                    CRAFT TRULY <br />UNIQUE ITEMS.
-                </h1>
+        <section id="about-section" class="about">
+            <div class="about-content">
+
+                <div class="about-text">
+                    <img src="/images/static/Air-Ballon.png" alt="Hot Air Ballon Icon" />
+                    <p>
+                        <strong>DoodleIn </strong>is a creative brand that
+                        specializes in
+                        crafting products and
+                        providing services with a distinctive doodle art
+                        style.
+                    </p>
+                </div>
+
+                <div class="about-image">
+                    <img src="/images/static/about-image.png" alt="About Image" />
+                </div>
+            </div>
+        </section>
+
+        <section id="products-section" class="products">
+            <div class="products-banner">
+                <h2 class="stroked-text" data-text="OUR PRODUCTS">
+                    OUR
+                    PRODUCTS
+                </h2>
+                <p class="stroked-text" data-text="Looking for a doodle design?
+                        Let’s make it happen.">
+                    Looking for a doodle design?
+                    Let’s make it happen.
+                </p>
             </div>
 
-            <a href="/orders" class="order-button">Let's
-                Doodling!</a>
-        </div>
-    </section>
+            <section class="product-gallery">
+                <div class="gallery-wrapper">
+                    <!-- gallery-track will be populated from /api/products by resources/js/main.js -->
+                    <!-- Add or change data-max to limit how many products show on the home gallery -->
+                    <div class="gallery-track" data-max="7"></div>
+                </div>
+            </section>
+            <a href="/products" class="more-products-button">Let’s Get
+                Some
+                Doodle!</a>
+        </section>
+
+        <section id="motto-section" class="motto">
+            <div class="motto-content">
+                <div class="motto-text">
+                    <h1>
+                        FUSE YOUR IMAGINATION<br />WITH DOODLEIN’S DOODLE
+                        <br />ART TO
+                        CRAFT TRULY <br />UNIQUE ITEMS.
+                    </h1>
+                </div>
+
+                <a href="/orders" class="order-button">Let's
+                    Doodling!</a>
+            </div>
+        </section>
+    </div>
 </main>
 @endslot
 @end

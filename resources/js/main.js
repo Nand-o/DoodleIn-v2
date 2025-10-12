@@ -25,7 +25,7 @@ const observer = new IntersectionObserver(function(entries, observer) {
 
 observer.observe(aboutSection);
 
-// --- Home gallery: render products from public/data/products.json ---
+// --- Home gallery: render products from API ---
 async function renderHomeGallery() {
     try {
         const track = document.querySelector('.gallery-track');
@@ -34,22 +34,15 @@ async function renderHomeGallery() {
         const maxAttr = track.getAttribute('data-max');
         const maxItems = maxAttr ? parseInt(maxAttr, 10) : Infinity;
 
-        // try API first, fallback to static JSON
-        let products = []
-        try {
-            const apiRes = await fetch('/api/products')
-            if (apiRes.ok) {
-                const json = await apiRes.json()
-                products = json.products || json || []
-            } else {
-                throw new Error('API non-ok')
-            }
-        } catch (e) {
-            const res = await fetch('/data/products.json')
-            if (!res.ok) return
-            const data = await res.json()
-            products = Array.isArray(data) ? data : (data.products || [])
+        // Fetch from API
+        const apiRes = await fetch('/api/products')
+        if (!apiRes.ok) {
+            console.error('Failed to load products from API')
+            return
         }
+        
+        const json = await apiRes.json()
+        const products = json.products || json || []
 
         // Clear existing children
         track.innerHTML = '';
@@ -57,9 +50,8 @@ async function renderHomeGallery() {
         const itemsToShow = products.slice(0, maxItems);
 
         itemsToShow.forEach(item => {
-            // Normalize image path: resources/images/... -> /images/...
-            let imgSrc = item.image || '';
-            imgSrc = imgSrc.replace(/^resources\/images\//, '/images/');
+            // No need to normalize - API already returns correct paths
+            const imgSrc = item.image || '';
 
             const div = document.createElement('div');
             div.className = 'product-item';
@@ -68,7 +60,7 @@ async function renderHomeGallery() {
                 <img src="${imgSrc}" alt="${escapeHtml(item.name || '')}" />
                 <div class="product-desc">
                     <h2>${escapeHtml(item.name || '')}</h2>
-                    <p>${escapeHtml(item.price || '')}</p>
+                    <p>$${escapeHtml(item.price || '')}</p>
                 </div>
                 <a href="/orders" class="card-order-button">Order Now</a>
             `;
@@ -77,9 +69,8 @@ async function renderHomeGallery() {
         })
 
         itemsToShow.forEach(item => {
-            // Normalize image path: resources/images/... -> /images/...
-            let imgSrc = item.image || '';
-            imgSrc = imgSrc.replace(/^resources\/images\//, '/images/');
+            // No need to normalize - API already returns correct paths
+            const imgSrc = item.image || '';
 
             const div = document.createElement('div');
             div.className = 'product-item';
@@ -88,7 +79,7 @@ async function renderHomeGallery() {
                 <img src="${imgSrc}" alt="${escapeHtml(item.name || '')}" />
                 <div class="product-desc">
                     <h2>${escapeHtml(item.name || '')}</h2>
-                    <p>${escapeHtml(item.price || '')}</p>
+                    <p>$${escapeHtml(item.price || '')}</p>
                 </div>
                 <a href="/orders" class="card-order-button">Order Now</a>
             `;

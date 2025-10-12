@@ -5,8 +5,8 @@ import path from 'node:path'
 
 export default class extends BaseSeeder {
   async run() {
-    // Read JSON file from public/data using fs to avoid import assertions
-    const jsonPath = path.join(process.cwd(), 'public', 'data', 'services.json')
+    // Read JSON file from database/seeds/data
+    const jsonPath = path.join(process.cwd(), 'database', 'seeds', 'data', 'services.json')
     const raw = await fs.readFile(jsonPath, 'utf8')
     const servicesData = JSON.parse(raw)
 
@@ -15,12 +15,19 @@ export default class extends BaseSeeder {
       const rawPrice = String(service.price || '')
       const firstPart = rawPrice.split('-')[0]
       const cleaned = firstPart.replace(/[^0-9.]/g, '')
+
+      // Normalize image path: resources/images/products/... → /images/static/products/...
+      let imagePath = service.image
+      if (imagePath && imagePath.startsWith('resources/images/')) {
+        imagePath = imagePath.replace(/^resources\/images\//, '/images/static/')
+      }
+
       return {
         id: service.id,
         name: service.name,
         description: service.description,
         price: Number.parseFloat(cleaned) || 0,
-        imageUrl: service.image,
+        imageUrl: imagePath,
       }
     })
 

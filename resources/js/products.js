@@ -2,8 +2,7 @@
 // Fetch products.json and render slider cards dynamically
 
 async function fetchData() {
-    // Try API endpoints first (server-backed SQLite). If unavailable, fall back
-    // to the legacy static JSON files in /data for backward compatibility.
+    // Fetch from API endpoints (server-backed SQLite)
     try {
         const apiProducts = fetch('/api/products')
         const apiServices = fetch('/api/services')
@@ -18,27 +17,11 @@ async function fetchData() {
             }
         }
 
-        // If API responded but non-ok, fall through to legacy fallback
-        console.warn('API endpoints returned non-ok status, falling back to static JSON')
+        // If API responded but non-ok
+        console.error('API endpoints returned non-ok status')
+        return { products: [], services: [] }
     } catch (err) {
-        // network error or endpoint not found — fall back to static JSON
-        console.warn('API fetch failed, falling back to static JSON:', err)
-    }
-
-    // Legacy fallback
-    try {
-        const [productsRes, servicesRes] = await Promise.all([
-            fetch('/data/products.json'),
-            fetch('/data/services.json')
-        ])
-        if (!productsRes.ok || !servicesRes.ok) throw new Error('Failed to load legacy products or services')
-        const [productsData, servicesData] = await Promise.all([productsRes.json(), servicesRes.json()])
-        return {
-            products: productsData.products || [],
-            services: servicesData.services || []
-        }
-    } catch (err) {
-        console.error('Failed to load any product/service data:', err)
+        console.error('Failed to load product/service data:', err)
         return { products: [], services: [] }
     }
 }
@@ -124,10 +107,6 @@ async function renderProducts() {
     if (productTrack) {
         productTrack.innerHTML = ''
         data.products.forEach((p) => {
-            // normalize image path from resources/images/... to /images/...
-            if (p.image && p.image.startsWith('resources/images/')) {
-                p.image = p.image.replace(/^resources\/images\//, '/images/')
-            }
             productTrack.appendChild(createCard(p))
         })
     }
