@@ -1,7 +1,47 @@
 {
+  "resources/css/about.css": {
+    "file": "about-BHBppxLs.css",
+    "src": "resources/css/about.css",
+    "isEntry": true
+  },
   "resources/css/app.css": {
     "file": "app-BhNHkJip.css",
     "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/contact.css": {
+    "file": "contact-Dluks1ed.css",
+    "src": "resources/css/contact.css",
+    "isEntry": true
+  },
+  "resources/css/main.css": {
+    "file": "app-BhNHkJip.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/order.css": {
+    "file": "order-8aC9eW9x.css",
+    "src": "resources/css/order.css",
+    "isEntry": true
+  },
+  "resources/css/product.css": {
+    "file": "product-BrQXTnaV.css",
+    "src": "resources/css/product.css",
+    "isEntry": true
+  },
+  "resources/css/search.css": {
+    "file": "search-CkD7eldS.css",
+    "src": "resources/css/search.css",
+    "isEntry": true
+  },
+  "resources/css/seller.css": {
+    "file": "seller-BMYfrXJr.css",
+    "src": "resources/css/seller.css",
+    "isEntry": true
+  },
+  "resources/css/wishlist.css": {
+    "file": "wishlist-CVFInZXv.css",
+    "src": "resources/css/wishlist.css",
     "isEntry": true
   },
   "resources/fonts/AltformTRIAL-Bold.woff": {
@@ -16,10 +56,52 @@
     "file": "AltformTRIAL-Regular-BXuCRc60.woff",
     "src": "resources/fonts/AltformTRIAL-Regular.woff"
   },
+  "resources/js/about.js": {
+    "file": "about-BYsMOcSE.js",
+    "name": "about",
+    "src": "resources/js/about.js",
+    "isEntry": true
+  },
   "resources/js/app.js": {
     "file": "app-DpYB9cOq.js",
     "name": "app",
     "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/main.js": {
+    "file": "main-DpYB9cOq.js",
+    "name": "main",
+    "src": "resources/js/main.js",
+    "isEntry": true
+  },
+  "resources/js/order.js": {
+    "file": "order-0gnbhrjm.js",
+    "name": "order",
+    "src": "resources/js/order.js",
+    "isEntry": true
+  },
+  "resources/js/productSlider.js": {
+    "file": "productSlider-BMqpQ787.js",
+    "name": "productSlider",
+    "src": "resources/js/productSlider.js",
+    "isEntry": true
+  },
+  "resources/js/products.js": {
+    "file": "products-DpbEX56W.js",
+    "name": "products",
+    "src": "resources/js/products.js",
+    "isEntry": true
+  },
+  "resources/js/search.js": {
+    "file": "search-Qr6bb9wZ.js",
+    "name": "search",
+    "src": "resources/js/search.js",
+    "isEntry": true
+  },
+  "resources/js/seller.js": {
+    "file": "seller-C6u_8O5w.js",
+    "name": "seller",
+    "src": "resources/js/seller.js",
     "isEntry": true
   }
 }

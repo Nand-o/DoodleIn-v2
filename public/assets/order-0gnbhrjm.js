@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{const t=document.querySelector("#place-order-btn"),e=document.querySelector("#thank-you-modal");document.querySelector(".close-button").addEventListener("click",()=>{window.location.href="/"}),t&&e&&t.addEventListener("click",o=>{o.preventDefault(),e.classList.add("visible"),setTimeout(()=>{e.classList.remove("visible")},3e3)})});

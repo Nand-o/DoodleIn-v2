@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector("#cta-products"),t=document.querySelector("#cta-order");e&&e.addEventListener("click",()=>{window.location.href="/products"}),t&&t.addEventListener("click",()=>{window.location.href="/orders"})});

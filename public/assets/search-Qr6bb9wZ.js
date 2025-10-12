@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("search");e&&e.addEventListener("keydown",t=>{if(t.key==="Enter"){const n=e.value.trim();n.length&&(window.location.href="/search?q="+encodeURIComponent(n))}})});
