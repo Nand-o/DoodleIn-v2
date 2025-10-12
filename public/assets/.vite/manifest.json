@@ -1,0 +1,25 @@
+{
+  "resources/css/app.css": {
+    "file": "app-BhNHkJip.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/fonts/AltformTRIAL-Bold.woff": {
+    "file": "AltformTRIAL-Bold-Buxi15g3.woff",
+    "src": "resources/fonts/AltformTRIAL-Bold.woff"
+  },
+  "resources/fonts/AltformTRIAL-Light.woff": {
+    "file": "AltformTRIAL-Light-CJWcKidK.woff",
+    "src": "resources/fonts/AltformTRIAL-Light.woff"
+  },
+  "resources/fonts/AltformTRIAL-Regular.woff": {
+    "file": "AltformTRIAL-Regular-BXuCRc60.woff",
+    "src": "resources/fonts/AltformTRIAL-Regular.woff"
+  },
+  "resources/js/app.js": {
+    "file": "app-DpYB9cOq.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}

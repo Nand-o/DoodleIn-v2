@@ -137,3 +137,19 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# AdonisJS specific
+tmp/
+build/
+
+# SQLite database (local development)
+# Note: Production uses /var/data/db.sqlite3 on Render's persistent disk
+tmp/db.sqlite3
+
+# User uploads (uploaded images)
+# Keep the directory structure but ignore uploaded files
+public/images/products/*
+!public/images/products/.gitkeep
+
+# Keep static assets but ignore any temporary files
+public/images/static/.DS_Store

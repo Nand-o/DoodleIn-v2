@@ -7,7 +7,8 @@ const dbConfig = defineConfig({
     sqlite: {
       client: 'better-sqlite3',
       connection: {
-        filename: app.tmpPath('db.sqlite3'),
+        // Use persistent disk in production, local tmp in development
+        filename: app.inProduction ? '/var/data/db.sqlite3' : app.tmpPath('db.sqlite3'),
       },
       useNullAsDefault: true,
       migrations: {

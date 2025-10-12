@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: doodlein-v2
+    env: node
+    region: singapore
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    
+    # Persistent disk for SQLite database
+    disk:
+      name: doodlein-db
+      mountPath: /var/data
+      sizeGB: 1
+    
+    # Environment variables
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: HOST
+        value: 0.0.0.0
+      - key: LOG_LEVEL
+        value: info
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: SESSION_DRIVER
+        value: cookie
+    
+    # Health check endpoint
+    healthCheckPath: /
+    
+    # Auto-deploy from GitHub
+    autoDeploy: true
