@@ -14,12 +14,12 @@ export default class Product extends BaseModel {
   @column()
   declare price: number
 
-  @column()
+  @column({ columnName: 'image_url' })
   declare imageUrl: string
 
-  @column.dateTime({ autoCreate: true })
+  @column.dateTime({ autoCreate: true, columnName: 'created_at' })
   declare createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.dateTime({ autoCreate: true, autoUpdate: true, columnName: 'updated_at' })
   declare updatedAt: DateTime
 }

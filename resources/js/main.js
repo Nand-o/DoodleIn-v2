@@ -34,11 +34,22 @@ async function renderHomeGallery() {
         const maxAttr = track.getAttribute('data-max');
         const maxItems = maxAttr ? parseInt(maxAttr, 10) : Infinity;
 
-        const res = await fetch('/data/products.json');
-        if (!res.ok) return;
-
-        const data = await res.json();
-        const products = Array.isArray(data) ? data : (data.products || []);
+        // try API first, fallback to static JSON
+        let products = []
+        try {
+            const apiRes = await fetch('/api/products')
+            if (apiRes.ok) {
+                const json = await apiRes.json()
+                products = json.products || json || []
+            } else {
+                throw new Error('API non-ok')
+            }
+        } catch (e) {
+            const res = await fetch('/data/products.json')
+            if (!res.ok) return
+            const data = await res.json()
+            products = Array.isArray(data) ? data : (data.products || [])
+        }
 
         // Clear existing children
         track.innerHTML = '';
@@ -62,8 +73,8 @@ async function renderHomeGallery() {
                 <a href="/orders" class="card-order-button">Order Now</a>
             `;
 
-            track.appendChild(div);
-        });
+            track.appendChild(div)
+        })
 
         itemsToShow.forEach(item => {
             // Normalize image path: resources/images/... -> /images/...
@@ -82,8 +93,8 @@ async function renderHomeGallery() {
                 <a href="/orders" class="card-order-button">Order Now</a>
             `;
 
-            track.appendChild(div);
-        });
+            track.appendChild(div)
+        })
     } catch (err) {
         // fail silently in production-like setup
         console.error('Failed to render home gallery', err);

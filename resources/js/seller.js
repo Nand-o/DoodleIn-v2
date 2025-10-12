@@ -77,38 +77,95 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add product form
     const addProductForm = document.getElementById('addProductForm');
-    addProductForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const newProduct = {
-            id: Date.now(),
-            name: document.getElementById('productName').value,
-            price: '$' + parseFloat(document.getElementById('productPrice').value),
-            description: document.getElementById('productDescription').value,
-            image: document.getElementById('productImage').value || 'https://via.placeholder.com/250x200/9C27B0/white?text=New+Product'
-        };
+    const imageInput = document.getElementById('productImage');
+    const imagePreview = document.getElementById('imagePreview');
+    const previewImg = document.getElementById('previewImg');
 
-        // Add to custom products in localStorage
-        const customProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
-        customProducts.push(newProduct);
-        localStorage.setItem('sellerProducts', JSON.stringify(customProducts));
-        
-        // Reload all products to show the new one
-        loadProducts();
-        
-        addProductForm.reset();
-        
-        const successMsg = document.getElementById('successMessage');
-        successMsg.classList.add('show');
-        setTimeout(() => successMsg.classList.remove('show'), 3000);
+    // Image preview
+    imageInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImg.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.style.display = 'none';
+        }
     });
 
-    // Restore hidden items button
-    const restoreBtn = document.getElementById('restoreBtn');
-    restoreBtn.addEventListener('click', function() {
-        if (confirm('Restore all hidden products?')) {
-            localStorage.removeItem('hiddenProducts');
-            loadProducts();
+    addProductForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const itemType = document.getElementById('itemType').value
+        const name = document.getElementById('productName').value
+        const price = parseFloat(document.getElementById('productPrice').value)
+        const description = document.getElementById('productDescription').value
+        const imageFile = imageInput.files[0]
+
+        if (!itemType) {
+            alert('Please select item type (Product or Service)')
+            return
+        }
+
+        if (!imageFile) {
+            alert('Please upload an image')
+            return
+        }
+
+        try {
+            console.log('Uploading image...')
+
+            // Step 1: Upload image first
+            const formData = new FormData()
+            formData.append('image', imageFile)
+
+            const uploadResponse = await fetch('/api/upload-image', {
+                method: 'POST',
+                body: formData
+            })
+
+            if (!uploadResponse.ok) {
+                const error = await uploadResponse.json()
+                throw new Error(error.error || 'Failed to upload image')
+            }
+
+            const { path: imagePath } = await uploadResponse.json()
+            console.log('Image uploaded:', imagePath)
+
+            // Step 2: Create product/service with the uploaded image path
+            const endpoint = itemType === 'product' ? '/api/products' : '/api/services'
+            console.log(`Creating ${itemType}:`, { name, price, description, image: imagePath })
+
+            const createResponse = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, price, description, image: imagePath })
+            })
+
+            if (!createResponse.ok) {
+                const error = await createResponse.json()
+                throw new Error(error.error || `Failed to create ${itemType}`)
+            }
+
+            const result = await createResponse.json()
+            console.log(`${itemType} created:`, result)
+
+            // Reload all products to show the new one
+            await loadProducts()
+            
+            addProductForm.reset()
+            imagePreview.style.display = 'none'
+            
+            const successMsg = document.getElementById('successMessage')
+            successMsg.textContent = `${itemType.charAt(0).toUpperCase() + itemType.slice(1)} added to database successfully!`
+            successMsg.classList.add('show')
+            setTimeout(() => successMsg.classList.remove('show'), 3000)
+        } catch (error) {
+            console.error('Error creating item:', error)
+            alert(`Failed to add item: ${error.message}`)
         }
     });
 
@@ -129,35 +186,15 @@ function showDashboard() {
 function renderProducts() {
     const productGrid = document.getElementById('productGrid');
     
-    // Get IDs of custom products and services
-    const customProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
-    const customServices = JSON.parse(localStorage.getItem('sellerServices') || '[]');
-    const customIds = [...customProducts.map(p => p.id), ...customServices.map(s => s.id)];
-    
-    // Get hidden product IDs
-    const hiddenIds = JSON.parse(localStorage.getItem('hiddenProducts') || '[]');
-    
-    // Show/hide restore button
-    const restoreBtn = document.getElementById('restoreBtn');
-    if (restoreBtn) {
-        restoreBtn.style.display = hiddenIds.length > 0 ? 'block' : 'none';
-    }
-    
-    // Filter out hidden products
-    const visibleItems = allItems.filter(item => !hiddenIds.includes(item.id));
-    
-    productGrid.innerHTML = visibleItems.map(product => {
-        const isCustom = customIds.includes(product.id);
-        const badge = isCustom ? '<span style="background: #4CAF50; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-left: 8px;">Custom</span>' : '';
-        
+    productGrid.innerHTML = allItems.map(product => {
         return `
         <div class="product-card">
             <img src="${product.image}" alt="${product.name}" class="product-image">
             <div class="product-info">
-                <h4>${product.name}${badge}</h4>
+                <h4>${product.name}</h4>
                 <div class="product-price">${product.price}</div>
                 <p class="product-description">${product.description}</p>
-                <button class="btn-delete" data-id="${product.id}">Delete</button>
+                <button class="btn-delete" data-id="${product.id}">Delete from Database</button>
             </div>
         </div>
         `;
@@ -172,33 +209,47 @@ function renderProducts() {
     });
 }
 
-function deleteProduct(id) {
-    if (confirm('Are you sure you want to delete this product?')) {
-        // Check if it's a custom product
-        const customProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
-        const customServices = JSON.parse(localStorage.getItem('sellerServices') || '[]');
-        
-        const isCustomProduct = customProducts.some(p => p.id === id);
-        const isCustomService = customServices.some(s => s.id === id);
-        
-        if (isCustomProduct || isCustomService) {
-            // Permanently delete custom products
-            const updatedCustomProducts = customProducts.filter(p => p.id !== id);
-            localStorage.setItem('sellerProducts', JSON.stringify(updatedCustomProducts));
-            
-            const updatedCustomServices = customServices.filter(s => s.id !== id);
-            localStorage.setItem('sellerServices', JSON.stringify(updatedCustomServices));
-        } else {
-            // Hide original products (can't delete from JSON)
-            const hiddenIds = JSON.parse(localStorage.getItem('hiddenProducts') || '[]');
-            if (!hiddenIds.includes(id)) {
-                hiddenIds.push(id);
-                localStorage.setItem('hiddenProducts', JSON.stringify(hiddenIds));
-            }
+async function deleteProduct(id) {
+    if (!confirm('Are you sure you want to delete this product? This will PERMANENTLY remove it from the database.')) {
+        return
+    }
+
+    try {
+        // Determine if it's a product or service by checking allItems
+        const item = allItems.find(i => i.id === id)
+        if (!item) {
+            alert('Item not found!')
+            return
         }
-        
-        // Reload all products
-        loadProducts();
+
+        // Determine item type from original arrays
+        const isProduct = products.some(p => p.id === id)
+        const itemType = isProduct ? 'product' : 'service'
+        const endpoint = isProduct ? '/api/products' : '/api/services'
+
+        console.log(`Deleting ${itemType} with ID: ${id}`)
+
+        // Call DELETE API
+        const response = await fetch(`${endpoint}/${id}`, {
+            method: 'DELETE'
+        })
+
+        if (!response.ok) {
+            const error = await response.json()
+            throw new Error(error.error || 'Failed to delete item')
+        }
+
+        const result = await response.json()
+        console.log('Delete response:', result)
+
+        // Show success message
+        alert('Item deleted successfully from database!')
+
+        // Reload products to refresh the list
+        await loadProducts()
+    } catch (error) {
+        console.error('Error deleting product:', error)
+        alert(`Failed to delete item: ${error.message}`)
     }
 }
 
@@ -222,61 +273,75 @@ function renderWishlist() {
     `).join('');
 }
 
-// Load products from products.json
+// Load products from API (SQLite) with fallback to static JSON
 async function loadProducts() {
     try {
-        const response = await fetch('/data/products.json');
-        const data = await response.json();
-        products = data.products || [];
-        services = data.services || [];
-        
-        // Load custom products from localStorage
-        const customProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
-        const customServices = JSON.parse(localStorage.getItem('sellerServices') || '[]');
-        
-        // Combine original + custom items
-        products = [...products, ...customProducts];
-        services = [...services, ...customServices];
-        allItems = [...products, ...services];
-        
-        renderProducts();
+        let productsData = []
+        let servicesData = []
+
+        // try API endpoints first
+        try {
+            const [pRes, sRes] = await Promise.all([
+                fetch('/api/products'),
+                fetch('/api/services')
+            ])
+            if (pRes.ok && sRes.ok) {
+                const [pJson, sJson] = await Promise.all([pRes.json(), sRes.json()])
+                productsData = pJson.products || pJson || []
+                servicesData = sJson.services || sJson || []
+            } else {
+                throw new Error('API returned non-ok status')
+            }
+        } catch (e) {
+            // fallback to legacy static JSON files
+            const [pRes, sRes] = await Promise.all([
+                fetch('/data/products.json'),
+                fetch('/data/services.json')
+            ])
+            const [pJson, sJson] = await Promise.all([pRes.json(), sRes.json()])
+            productsData = pJson.products || []
+            servicesData = sJson.services || []
+        }
+
+        // assign
+        products = productsData || []
+        services = servicesData || []
+        allItems = [...products, ...services]
+
+        renderProducts()
         // Load wishlist after products are loaded
-        loadWishlist();
+        await loadWishlist()
     } catch (error) {
-        console.error('Error loading products:', error);
-        products = [];
-        services = [];
-        allItems = [];
-        renderProducts();
-        loadWishlist();
+        console.error('Error loading products:', error)
+        products = []
+        services = []
+        allItems = []
+        renderProducts()
+        loadWishlist()
     }
 }
 
-// Load wishlist from localStorage
-function loadWishlist() {
+// Load wishlist from database API
+async function loadWishlist() {
     try {
-        // Get wishlist IDs from localStorage
-        const wishlistIds = localStorage.getItem('doodlein_wishlist');
-        if (!wishlistIds) {
-            wishlistData = [];
-            renderWishlist();
-            return;
-        }
-
-        // Parse the IDs
-        const ids = JSON.parse(wishlistIds);
+        // Fetch wishlist from API
+        const res = await fetch('/api/wishlist')
+        if (!res.ok) throw new Error('Failed to fetch wishlist')
         
-        // Map IDs to actual product/service data from allItems
-        wishlistData = ids.map(id => {
-            // Find item by ID (converting to number for comparison)
-            const item = allItems.find(p => p.id == id || p.legacyId == id);
-            return item;
-        }).filter(p => p !== undefined); // Remove any undefined items
+        const data = await res.json()
+        const wishlistItems = data.wishlist || []
         
-        renderWishlist();
+        // Map wishlist items to actual product/service data
+        wishlistData = wishlistItems.map(w => {
+            // Find item by itemId from allItems
+            const item = allItems.find(p => String(p.id) === String(w.itemId))
+            return item
+        }).filter(p => p !== undefined) // Remove any undefined items
+        
+        renderWishlist()
     } catch (error) {
-        console.error('Error loading wishlist:', error);
-        wishlistData = [];
-        renderWishlist();
+        console.error('Error loading wishlist:', error)
+        wishlistData = []
+        renderWishlist()
     }
 }

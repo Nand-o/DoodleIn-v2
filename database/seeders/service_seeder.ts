@@ -23,6 +23,12 @@ export default class extends BaseSeeder {
         imageUrl: service.image,
       }
     })
-    await Service.createMany(services)
+
+    for (const s of services) {
+      const existing = await Service.find(s.id)
+      if (!existing) {
+        await Service.create(s)
+      }
+    }
   }
 }

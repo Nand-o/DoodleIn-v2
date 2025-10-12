@@ -22,6 +22,12 @@ export default class extends BaseSeeder {
         imageUrl: product.image,
       }
     })
-    await Product.createMany(products)
+
+    for (const p of products) {
+      const existing = await Product.find(p.id)
+      if (!existing) {
+        await Product.create(p)
+      }
+    }
   }
 }

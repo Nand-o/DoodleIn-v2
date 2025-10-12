@@ -5,10 +5,10 @@ export default class Wishlist extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
-  @column()
-  declare itemId: number
+  @column({ columnName: 'item_id' })
+  declare itemId: string
 
-  @column()
+  @column({ columnName: 'item_type' })
   declare itemType: string // 'product' or 'service'
 
   @column.dateTime({ autoCreate: true })
